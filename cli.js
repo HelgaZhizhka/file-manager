@@ -1,21 +1,27 @@
 import { createInterface } from 'readline'
+import { chdir } from 'process'
 
-import { getUsernameFromArgs } from './src/utils/index.js'
-import { processCommand } from './src/commands/index.js'
+import {
+  getUsernameFromArgs,
+  getHomeDir,
+  printCurrentWorkingDirectory,
+} from './src/utils/index.js'
+import processCommand from './src/commands/processCommand.js'
 
 const username = getUsernameFromArgs(process.argv)
 
+chdir(getHomeDir())
 console.log(`Welcome to the File Manager, ${username}!`)
+printCurrentWorkingDirectory()
 
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout,
 })
 
-
-
 rl.on('line', (line) => {
-  processCommand(line)
+  const commandLine = line.trim().split(' ') 
+  processCommand({ command: commandLine[0], payload: commandLine[1] })
 })
   .on('SIGINT', () => rl.close())
   .on('close', () => {

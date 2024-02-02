@@ -1,10 +1,15 @@
-const processCommand = async (command) => {
+import { INVALID_INPUT } from '../utils/constants.js'
+import wrapperProcessCommand from './wrapperProcessCommand.js'
+import { processCommandUp, processCommandCd } from './index.js'
+
+const processCommand = async (data) => {
+  const { command, payload } = data
   switch (command) {
     case 'up':
-      console.log('Going up one level')
+      wrapperProcessCommand(processCommandUp, payload)
       break
     case 'cd':
-      console.log('Changing directory')
+      wrapperProcessCommand(processCommandCd, payload)
       break
     case 'ls':
       console.log('Listing files')
@@ -41,7 +46,7 @@ const processCommand = async (command) => {
       process.nextTick(() => process.exit())
       break
     default:
-      console.log('Unknown command. Please try again.')
+      console.log(INVALID_INPUT)
   }
 }
 
