@@ -1,4 +1,4 @@
-import { COMMAND_NO_PARAMETERS } from '../utils/constants.js'
+import { COMMAND_NO_PARAMETERS } from '../constants.js'
 
 const isCommandWithParameters = (params) => {
   if (params.length > 0) {

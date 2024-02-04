@@ -1,12 +1,18 @@
-import { INVALID_INPUT } from '../utils/constants.js'
+import { INVALID_INPUT } from '../constants.js'
 import wrapperProcessCommand from './wrapperProcessCommand.js'
 import {
   processCommandAdd,
   processCommandRn,
   processCommandCp,
+  processCommandMv,
+  processCommandRm,
+  processCommandCat,
   processCommandUp,
   processCommandCd,
   processCommandLs,
+  processCommandHash,
+  processCommandCompress,
+  processCommandDecompress,
 } from './index.js'
 
 const processCommand = async (data) => {
@@ -22,7 +28,7 @@ const processCommand = async (data) => {
       await wrapperProcessCommand(processCommandLs, payload)
       break
     case 'cat':
-      console.log('Read file and print content in console')
+      await wrapperProcessCommand(processCommandCat, payload)
       break
     case 'add':
       await wrapperProcessCommand(processCommandAdd, payload)
@@ -34,19 +40,19 @@ const processCommand = async (data) => {
       await wrapperProcessCommand(processCommandCp, payload)
       break
     case 'mv':
-      console.log('Move file ')
+      await wrapperProcessCommand(processCommandMv, payload)
       break
     case 'rm':
-      console.log('Delete file ')
+      await wrapperProcessCommand(processCommandRm, payload)
       break
     case 'hash':
-      console.log('Calculate hash')
+      await wrapperProcessCommand(processCommandHash, payload)
       break
     case 'compress':
-      console.log('compress')
+      await wrapperProcessCommand(processCommandCompress, payload)
       break
     case 'decompress':
-      console.log('decompress')
+      await wrapperProcessCommand(processCommandDecompress, payload)
       break
     case '.exit':
       console.log('Thank you for using File Manager. Goodbye!')
