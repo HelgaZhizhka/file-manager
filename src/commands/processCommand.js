@@ -1,6 +1,13 @@
 import { INVALID_INPUT } from '../utils/constants.js'
 import wrapperProcessCommand from './wrapperProcessCommand.js'
-import { processCommandUp, processCommandCd } from './index.js'
+import {
+  processCommandAdd,
+  processCommandRn,
+  processCommandCp,
+  processCommandUp,
+  processCommandCd,
+  processCommandLs,
+} from './index.js'
 
 const processCommand = async (data) => {
   const { command, payload } = data
@@ -12,19 +19,19 @@ const processCommand = async (data) => {
       wrapperProcessCommand(processCommandCd, payload)
       break
     case 'ls':
-      console.log('Listing files')
+      await wrapperProcessCommand(processCommandLs, payload)
       break
     case 'cat':
       console.log('Read file and print content in console')
       break
     case 'add':
-      console.log('Create empty file')
+      await wrapperProcessCommand(processCommandAdd, payload)
       break
     case 'rn':
-      console.log('Rename file')
+      await wrapperProcessCommand(processCommandRn, payload)
       break
     case 'cp':
-      console.log('Copy file')
+      await wrapperProcessCommand(processCommandCp, payload)
       break
     case 'mv':
       console.log('Move file ')

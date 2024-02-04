@@ -1,9 +1,7 @@
 import { chdir } from 'process'
 
-import { isDirectoryRoot } from '../utils/index.js'
-
-const processCommandCd = (destPath) => {
-  isDirectoryRoot()
+const processCommandCd = (params) => {
+  const destPath = params[0]
   chdir(destPath)
 }
 

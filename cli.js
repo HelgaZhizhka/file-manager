@@ -21,7 +21,10 @@ const rl = createInterface({
 
 rl.on('line', (line) => {
   const commandLine = line.trim().split(' ') 
-  processCommand({ command: commandLine[0], payload: commandLine[1] })
+  const command = commandLine[0]
+  const payload = commandLine.slice(1)
+
+  processCommand({ command, payload })
 })
   .on('SIGINT', () => rl.close())
   .on('close', () => {

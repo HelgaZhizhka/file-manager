@@ -1,2 +1,6 @@
 export { default as processCommandCd } from './processCommandCd.js'
 export { default as processCommandUp } from './processCommandUp.js'
+export { default as processCommandLs } from './processCommandLs.js'
+export { default as processCommandAdd } from './processCommandAdd.js'
+export { default as processCommandRn } from './processCommandRn.js'
+export { default as processCommandCp } from './processCommandCp.js'

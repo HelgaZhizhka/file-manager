@@ -1,11 +1,12 @@
 import { chdir } from 'process'
 
-import {
-  isDirectoryRoot,
-} from '../utils/index.js'
+import isCommandWithParameters from './isCommandWithParameters.js'
+import { isDirectoryRoot } from '../utils/index.js'
 
-
-const processCommandUp = () => {
+const processCommandUp = (params) => {
+  if (isCommandWithParameters(params)) {
+    return
+  }
 
   if (isDirectoryRoot()) {
     return

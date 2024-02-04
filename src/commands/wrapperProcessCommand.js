@@ -1,13 +1,12 @@
 import { ERROR_MESSAGES } from '../utils/constants.js'
 import { printCurrentWorkingDirectory } from '../utils/index.js'
 
-
-const wrapperProcessCommand = (commandFunction, payload = {}) => {
+const wrapperProcessCommand = async (commandFunction, payload = {}) => {
   try {
-    commandFunction(payload)
+    await commandFunction(payload)
     printCurrentWorkingDirectory()
-  } catch {
-    console.error(ERROR_MESSAGES)
+  } catch(error) {
+    console.error(ERROR_MESSAGES, error.message)
   }
 }
 
