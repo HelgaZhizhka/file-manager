@@ -13,8 +13,8 @@ const processCommandMv = async (params) => {
 
   await pipeline(sourceStream, destinationStream)
 
-  await unlink(sourceFile)
-  console.log(`Moved file from ${sourcePath} to ${destinationFilePath}`)
+  await unlink(sourcePath)
+  console.log(`Moved file ${sourceFile} to ${destinationFilePath}`)
 }
 
 export default processCommandMv

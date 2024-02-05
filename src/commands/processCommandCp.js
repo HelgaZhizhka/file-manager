@@ -7,11 +7,13 @@ const processCommandCp = async (params) => {
   const sourceFile = basename(sourcePath)
   const destinationFilePath = join(destinationPath, sourceFile)
 
-  const sourceStream = createReadStream(sourceFile)
+  const sourceStream = createReadStream(sourcePath)
   const destinationStream = createWriteStream(destinationFilePath)
 
   await pipeline(sourceStream, destinationStream)
-  console.log(`File copied successfully to: ${destinationFilePath}`)
+  console.log(
+    `File ${sourceFile} copied successfully to: ${destinationFilePath}`
+  )
 }
 
 export default processCommandCp
