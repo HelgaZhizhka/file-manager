@@ -1,4 +1,4 @@
-import { getFilePath, hash } from '../utils/index.js'
+import { getFilePath } from '../utils/index.js'
 import { createReadStream } from 'fs'
 import crypto from 'crypto'
 
@@ -11,7 +11,7 @@ const processCommandHash = async (params) => {
   const stream = createReadStream(filePath)
 
   const hash = crypto.createHash(HASH)
-  
+
   stream.pipe(hash).on('finish', () => {
     console.log(hash.digest('hex'))
   })

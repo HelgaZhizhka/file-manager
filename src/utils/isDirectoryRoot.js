@@ -1,5 +1,5 @@
 import { cwd } from 'process'
-import { parse, sep } from 'path'
+import { parse } from 'path'
 
 const isDirectoryRoot = () => {
   const currentDirectory = cwd()

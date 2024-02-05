@@ -9,10 +9,9 @@ const processCommandCp = async (params) => {
 
   const sourceStream = createReadStream(sourceFile)
   const destinationStream = createWriteStream(destinationFilePath)
-  console.log(sourceFile, destinationStream)
 
   await pipeline(sourceStream, destinationStream)
-  console.log(`Copied file from ${sourceFile} to ${destinationFilePath}`)
+  console.log(`File copied successfully to: ${destinationFilePath}`)
 }
 
 export default processCommandCp

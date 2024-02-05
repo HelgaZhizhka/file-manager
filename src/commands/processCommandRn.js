@@ -6,7 +6,6 @@ const processCommandRn = async (payload) => {
   const [oldPath, newName] = payload
   const oldFilePath = getFilePath(oldPath)
   const newFilePath = getFilePath(newName)
-  console.log(oldFilePath, newFilePath)
   await rename(oldFilePath, newFilePath)
   console.log(`Renamed file to: ${newName}`)
 }

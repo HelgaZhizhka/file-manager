@@ -1,4 +1,5 @@
 import { unlink } from 'fs/promises'
+
 import { getFilePath } from '../utils/index.js'
 
 const processCommandRm = async (params) => {

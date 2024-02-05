@@ -1,4 +1,4 @@
-import { INVALID_INPUT } from '../constants.js'
+import { INVALID_INPUT, COMMAND_NO_PARAMETERS, COMMANDS } from '../constants.js'
 import wrapperProcessCommand from './wrapperProcessCommand.js'
 import {
   processCommandAdd,
@@ -13,50 +13,106 @@ import {
   processCommandHash,
   processCommandCompress,
   processCommandDecompress,
+  processCommandOsEol,
+  processCommandOsCpus,
+  processCommandOsHomeDir,
+  processCommandOsUsername,
+  processCommandOsArchitecture,
 } from './index.js'
+
+const {
+  UP,
+  CD,
+  LS,
+  CAT,
+  ADD,
+  RN,
+  RM,
+  CP,
+  MV,
+  HASH,
+  COMPRESS,
+  DECOMPRESS,
+  OS,
+  EOL,
+  CPUS,
+  HOMEDIR,
+  USERNAME,
+  ARCHITECTURE,
+} = COMMANDS
 
 const processCommand = async (data) => {
   const { command, payload } = data
+
   switch (command) {
-    case 'up':
+    case UP:
+      if (payload.length > 0) {
+        console.log(COMMAND_NO_PARAMETERS)
+        break
+      }
       wrapperProcessCommand(processCommandUp, payload)
       break
-    case 'cd':
+    case CD:
       wrapperProcessCommand(processCommandCd, payload)
       break
-    case 'ls':
+    case LS:
+      if (payload.length > 0) {
+        console.log(COMMAND_NO_PARAMETERS)
+        break
+      }
       await wrapperProcessCommand(processCommandLs, payload)
       break
-    case 'cat':
+    case CAT:
       await wrapperProcessCommand(processCommandCat, payload)
       break
-    case 'add':
+    case ADD:
       await wrapperProcessCommand(processCommandAdd, payload)
       break
-    case 'rn':
+    case RN:
       await wrapperProcessCommand(processCommandRn, payload)
       break
-    case 'cp':
+    case CP:
       await wrapperProcessCommand(processCommandCp, payload)
       break
-    case 'mv':
+    case MV:
       await wrapperProcessCommand(processCommandMv, payload)
       break
-    case 'rm':
+    case RM:
       await wrapperProcessCommand(processCommandRm, payload)
       break
-    case 'hash':
+    case HASH:
       await wrapperProcessCommand(processCommandHash, payload)
       break
-    case 'compress':
+    case COMPRESS:
       await wrapperProcessCommand(processCommandCompress, payload)
       break
-    case 'decompress':
+    case DECOMPRESS:
       await wrapperProcessCommand(processCommandDecompress, payload)
       break
-    case '.exit':
-      console.log('Thank you for using File Manager. Goodbye!')
-      process.nextTick(() => process.exit())
+    case OS:
+      if (payload.length === 0) {
+        console.log(INVALID_INPUT)
+        break
+      }
+      switch (payload[0].toLowerCase()) {
+        case EOL:
+          wrapperProcessCommand(processCommandOsEol)
+          break
+        case CPUS:
+          wrapperProcessCommand(processCommandOsCpus)
+          break
+        case HOMEDIR:
+          wrapperProcessCommand(processCommandOsHomeDir)
+          break
+        case USERNAME:
+          wrapperProcessCommand(processCommandOsUsername)
+          break
+        case ARCHITECTURE:
+          wrapperProcessCommand(processCommandOsArchitecture)
+          break
+        default:
+          break
+      }
       break
     default:
       console.log(INVALID_INPUT)

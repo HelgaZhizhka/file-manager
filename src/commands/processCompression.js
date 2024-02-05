@@ -15,7 +15,6 @@ const processCompression = async (sourcePath, destinationPath, isCompress) => {
   let destFileName = isCompress ? `${sourceFileBase}.br` : sourceFileName
 
   const destFilePath = resolve(cwd(), destinationFilePath, destFileName)
-  console.log(destFilePath)
 
   const sourceStream = createReadStream(sourceFilePath)
   const destinationStream = createWriteStream(destFilePath)
